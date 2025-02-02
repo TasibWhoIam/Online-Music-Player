@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Music Player</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>YouTube Music Player</h1>
+    <div class="search-container">
+      <input type="text" id="searchInput" placeholder="Search for a song...">
+      <button id="searchBtn">Search</button>
+    </div>
+  </header>
+
+  <main>
+    <div class="playlist-container">
+      <h2>Playlist</h2>
+      <ul id="playlist"></ul>
+    </div>
+
+    <div class="player-container">
+      <div class="player-controls">
+        <button id="prevBtn">⏮</button>
+        <button id="playPauseBtn">▶</button>
+        <button id="nextBtn">⏭</button>
+      </div>
+      <div class="progress-container">
+        <div id="progress"></div>
+      </div>
+      <div class="volume-control">
+        <label for="volume">Volume:</label>
+        <input type="range" id="volume" min="0" max="1" step="0.1" value="1">
+      </div>
+    </div>
+
+    <div id="player"></div> <!-- YouTube IFrame Player -->
+  </main>
+
+  <script src="script.js"></script>
+  <script src="https://www.youtube.com/iframe_api"></script>
+</body>
+</html>

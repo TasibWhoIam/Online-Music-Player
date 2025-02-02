@@ -1,0 +1,129 @@
+/* General Styles */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #121212;
+  color: #fff;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+}
+
+header {
+  width: 100%;
+  background-color: #1db954;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+  margin: 0;
+  font-size: 2rem;
+}
+
+.search-container {
+  margin-top: 10px;
+}
+
+#searchInput {
+  padding: 10px;
+  width: 300px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+#searchBtn {
+  padding: 10px 20px;
+  margin-left: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #000;
+  color: #fff;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+#searchBtn:hover {
+  background-color: #333;
+}
+
+main {
+  width: 100%;
+  max-width: 800px;
+  margin-top: 20px;
+  padding: 20px;
+}
+
+.playlist-container {
+  background-color: #181818;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.playlist-container h2 {
+  margin-top: 0;
+}
+
+#playlist {
+  list-style: none;
+  padding: 0;
+}
+
+#playlist li {
+  padding: 10px;
+  background-color: #282828;
+  margin-bottom: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#playlist li:hover {
+  background-color: #333;
+}
+
+.player-container {
+  background-color: #181818;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.player-controls button {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1.5rem;
+  cursor: pointer;
+  margin: 0 10px;
+}
+
+.player-controls button:hover {
+  color: #1db954;
+}
+
+.progress-container {
+  width: 100%;
+  height: 5px;
+  background-color: #333;
+  margin: 20px 0;
+  cursor: pointer;
+}
+
+#progress {
+  height: 100%;
+  background-color: #1db954;
+  width: 0%;
+}
+
+.volume-control {
+  margin-top: 20px;
+}
+
+.volume-control input {
+  cursor: pointer;
+}
