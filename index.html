@@ -3,41 +3,61 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Music Player</title>
+  <title>Spotify Clone</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <header>
-    <h1>YouTube Music Player</h1>
-    <div class="search-container">
-      <input type="text" id="searchInput" placeholder="Search for a song...">
-      <button id="searchBtn">Search</button>
-    </div>
+    <nav class="navbar">
+      <h1 class="logo">Spotify Clone</h1>
+      <ul class="nav-links">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Browse</a></li>
+        <li><a href="#">Library</a></li>
+      </ul>
+      <div class="search-container">
+        <input type="text" id="searchInput" placeholder="Search for a song...">
+        <button id="searchBtn">🔍</button>
+      </div>
+    </nav>
   </header>
 
   <main>
-    <div class="playlist-container">
-      <h2>Playlist</h2>
-      <ul id="playlist"></ul>
-    </div>
+    <div class="main-content">
+      <div class="playlist-container">
+        <h2>Your Playlist</h2>
+        <ul id="playlist"></ul>
+      </div>
 
-    <div class="player-container">
-      <div class="player-controls">
-        <button id="prevBtn">⏮</button>
-        <button id="playPauseBtn">▶</button>
-        <button id="nextBtn">⏭</button>
+      <div class="player-container">
+        <div class="album-art">
+          <img id="albumArt" src="placeholder.jpg" alt="Album Art">
+        </div>
+        <div class="song-details">
+          <h3 id="songTitle">Song Title</h3>
+          <p id="artistName">Artist Name</p>
+        </div>
+        <div class="player-controls">
+          <button id="prevBtn">⏮</button>
+          <button id="playPauseBtn">▶</button>
+          <button id="nextBtn">⏭</button>
+        </div>
+        <div class="progress-container">
+          <div id="progress"></div>
+        </div>
+        <div class="volume-control">
+          <label for="volume">Volume:</label>
+          <input type="range" id="volume" min="0" max="1" step="0.1" value="1">
+        </div>
       </div>
-      <div class="progress-container">
-        <div id="progress"></div>
-      </div>
-      <div class="volume-control">
-        <label for="volume">Volume:</label>
-        <input type="range" id="volume" min="0" max="1" step="0.1" value="1">
-      </div>
+      <!-- Add hidden YouTube iframe player -->
+      <div id="player" style="display: none;"></div>
     </div>
-
-    <div id="player"></div> <!-- YouTube IFrame Player -->
   </main>
+
+  <footer>
+    <p>© 2023 Spotify Clone. All rights reserved.</p>
+  </footer>
 
   <script src="script.js"></script>
   <script src="https://www.youtube.com/iframe_api"></script>

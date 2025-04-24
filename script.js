@@ -14,6 +14,18 @@ function onYouTubeIframeAPIReady() {
   });
 }
 
+// Ensure the YouTube iframe player is hidden
+function onYouTubeIframeAPIReady() {
+  player = new YT.Player('player', {
+    height: '0',
+    width: '0',
+    events: {
+      'onReady': onPlayerReady,
+      'onStateChange': onPlayerStateChange
+    }
+  });
+}
+
 function onPlayerReady(event) {
   console.log('Player is ready');
 }
@@ -45,12 +57,29 @@ function displayPlaylist() {
   });
 }
 
+// Highlight the currently playing song in the playlist
+function highlightCurrentSong() {
+  const playlistItems = document.querySelectorAll('#playlist li');
+  playlistItems.forEach((item, index) => {
+    item.style.backgroundColor = index === currentSongIndex ? '#1db954' : '#282828';
+  });
+}
+
+// Update the song details (title and artist)
+function updateSongDetails() {
+  const currentSong = playlist[currentSongIndex];
+  document.getElementById('songTitle').textContent = currentSong.snippet.title;
+  document.getElementById('artistName').textContent = currentSong.snippet.channelTitle;
+}
+
 // Play a song
 function playSong(index) {
   currentSongIndex = index;
   const videoId = playlist[index].id.videoId;
   player.loadVideoById(videoId);
   document.getElementById('playPauseBtn').textContent = '⏸';
+  highlightCurrentSong();
+  updateSongDetails();
 }
 
 // Play/Pause functionality
@@ -90,3 +119,13 @@ setInterval(() => {
     document.getElementById('progress').style.width = `${progress}%`;
   }
 }, 1000);
+
+// Seek functionality
+document.querySelector('.progress-container').addEventListener('click', (e) => {
+  const progressContainer = e.currentTarget;
+  const rect = progressContainer.getBoundingClientRect();
+  const clickX = e.clientX - rect.left;
+  const width = progressContainer.offsetWidth;
+  const seekTime = (clickX / width) * player.getDuration();
+  player.seekTo(seekTime);
+});
