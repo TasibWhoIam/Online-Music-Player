@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Spotify Clone</title>
+  <title>Online Music Player</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <header>
     <nav class="navbar">
-      <h1 class="logo">Spotify Clone</h1>
+      <h1 class="logo">Online Music Player</h1>
       <ul class="nav-links">
-        <li><a href="#">Home</a></li>
+        <li><a href="index.html">Home</a></li> <!-- Redirects to the home page -->
         <li><a href="#">Browse</a></li>
         <li><a href="#">Library</a></li>
       </ul>
@@ -25,14 +25,11 @@
   <main>
     <div class="main-content">
       <div class="playlist-container">
-        <h2>Your Playlist</h2>
+        <h2>Your Search Results</h2>
         <ul id="playlist"></ul>
       </div>
 
       <div class="player-container">
-        <div class="album-art">
-          <img id="albumArt" src="placeholder.jpg" alt="Album Art">
-        </div>
         <div class="song-details">
           <h3 id="songTitle">Song Title</h3>
           <p id="artistName">Artist Name</p>
@@ -43,7 +40,12 @@
           <button id="nextBtn">⏭</button>
         </div>
         <div class="progress-container">
-          <div id="progress"></div>
+          <span id="currentTime">0:00</span>
+          <div id="progressBar">
+            <div id="progress"></div>
+            <div id="progressThumb"></div> <!-- Draggable thumb -->
+          </div>
+          <span id="duration">0:00</span>
         </div>
         <div class="volume-control">
           <label for="volume">Volume:</label>
@@ -56,7 +58,7 @@
   </main>
 
   <footer>
-    <p>© 2023 Spotify Clone. All rights reserved.</p>
+    <p>© Made by NA Sakib</p>
   </footer>
 
   <script src="script.js"></script>

@@ -112,20 +112,64 @@ document.getElementById('volume').addEventListener('input', (e) => {
   player.setVolume(e.target.value * 100);
 });
 
-// Update progress bar
+// Update progress bar and thumb position
 setInterval(() => {
-  if (player.getDuration()) {
-    const progress = (player.getCurrentTime() / player.getDuration()) * 100;
+  if (player && player.getDuration) {
+    const currentTime = player.getCurrentTime();
+    const duration = player.getDuration();
+    document.getElementById('currentTime').textContent = formatTime(currentTime);
+    document.getElementById('duration').textContent = formatTime(duration);
+
+    const progress = (currentTime / duration) * 100;
     document.getElementById('progress').style.width = `${progress}%`;
+    document.getElementById('progressThumb').style.left = `${progress}%`;
   }
 }, 1000);
 
-// Seek functionality
-document.querySelector('.progress-container').addEventListener('click', (e) => {
-  const progressContainer = e.currentTarget;
-  const rect = progressContainer.getBoundingClientRect();
+// Seek functionality with thumb animation
+const progressBar = document.getElementById('progressBar');
+progressBar.addEventListener('click', (e) => {
+  const rect = progressBar.getBoundingClientRect();
   const clickX = e.clientX - rect.left;
-  const width = progressContainer.offsetWidth;
+  const width = progressBar.offsetWidth;
   const seekTime = (clickX / width) * player.getDuration();
   player.seekTo(seekTime);
+
+  // Update progress and thumb position immediately
+  const progress = (clickX / width) * 100;
+  document.getElementById('progress').style.width = `${progress}%`;
+  document.getElementById('progressThumb').style.left = `${progress}%`;
 });
+
+// Dragging the progress thumb
+let isDragging = false;
+const progressThumb = document.getElementById('progressThumb');
+
+progressThumb.addEventListener('mousedown', () => {
+  isDragging = true;
+});
+
+document.addEventListener('mousemove', (e) => {
+  if (isDragging) {
+    const rect = progressBar.getBoundingClientRect();
+    const dragX = Math.min(Math.max(e.clientX - rect.left, 0), rect.width);
+    const dragProgress = (dragX / rect.width) * 100;
+    const seekTime = (dragX / rect.width) * player.getDuration();
+
+    // Update progress and thumb position during dragging
+    document.getElementById('progress').style.width = `${dragProgress}%`;
+    progressThumb.style.left = `${dragProgress}%`;
+    player.seekTo(seekTime);
+  }
+});
+
+document.addEventListener('mouseup', () => {
+  isDragging = false;
+});
+
+// Format time in minutes:seconds
+function formatTime(seconds) {
+  const minutes = Math.floor(seconds / 60);
+  const secs = Math.floor(seconds % 60).toString().padStart(2, '0');
+  return `${minutes}:${secs}`;
+}
