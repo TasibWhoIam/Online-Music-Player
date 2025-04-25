@@ -11,7 +11,7 @@
     <nav class="navbar">
       <h1 class="logo">Online Music Player</h1>
       <ul class="nav-links">
-        <li><a href="index.html">Home</a></li> <!-- Redirects to the home page -->
+        <li><a href="index.html">Home</a></li> <!-- Updated to point to the new index.html -->
         <li><a href="#">Browse</a></li>
         <li><a href="#">Library</a></li>
       </ul>
@@ -24,7 +24,7 @@
 
   <main>
     <div class="main-content">
-      <div class="playlist-container">
+      <div class="playlist-container animate-fade-in">
         <h2>Your Search Results</h2>
         <ul id="playlist"></ul>
       </div>
@@ -72,6 +72,10 @@
     if (searchQuery) {
       document.getElementById('searchInput').value = searchQuery;
       document.getElementById('searchBtn').click(); // Trigger the search
+
+      // Add animation to the playlist container
+      const playlistContainer = document.querySelector('.playlist-container');
+      playlistContainer.classList.add('show');
     }
   } catch (error) {
     console.error('Error processing search query:', error);
