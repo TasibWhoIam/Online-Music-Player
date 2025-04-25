@@ -36,10 +36,25 @@ function onPlayerStateChange(event) {
   }
 }
 
+// List of YouTube API keys
+const apiKeys = [
+  'AIzaSyBXFXcgcsxqmZGo168pbxOgZAztZnBVd3A',
+  'AIzaSyAPqGf2ZZT7ur9-lvaRBDQ8ms1-T15u3OU'
+];
+let currentApiKeyIndex = 0;
+
+// Function to get the current API key and cycle to the next one
+function getApiKey() {
+  const apiKey = apiKeys[currentApiKeyIndex];
+  currentApiKeyIndex = (currentApiKeyIndex + 1) % apiKeys.length;
+  return apiKey;
+}
+
 // Search for songs
 document.getElementById('searchBtn').addEventListener('click', async () => {
   const query = document.getElementById('searchInput').value;
-  const response = await fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&q=${query}&type=video&key=AIzaSyBXFXcgcsxqmZGo168pbxOgZAztZnBVd3A`);
+  const apiKey = getApiKey();
+  const response = await fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&q=${query}&type=video&key=${apiKey}`);
   const data = await response.json();
   playlist = data.items;
   displayPlaylist();
