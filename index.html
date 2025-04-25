@@ -63,5 +63,19 @@
 
   <script src="script.js"></script>
   <script src="https://www.youtube.com/iframe_api"></script>
+  <script>
+  // Extract the search query from the URL
+  try {
+    const urlParams = new URLSearchParams(window.location.search);
+    const searchQuery = urlParams.get('search');
+
+    if (searchQuery) {
+      document.getElementById('searchInput').value = searchQuery;
+      document.getElementById('searchBtn').click(); // Trigger the search
+    }
+  } catch (error) {
+    console.error('Error processing search query:', error);
+  }
+</script>
 </body>
 </html>
