@@ -52,6 +52,13 @@
         alert('Please enter a search query.');
       }
     });
+
+    // Trigger search on Enter key press
+    document.getElementById('searchInput').addEventListener('keypress', (event) => {
+      if (event.key === 'Enter') {
+        document.getElementById('searchBtn').click();
+      }
+    });
   </script>
 </body>
 </html>

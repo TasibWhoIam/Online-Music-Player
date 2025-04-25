@@ -80,6 +80,13 @@
   } catch (error) {
     console.error('Error processing search query:', error);
   }
+
+  // Trigger search on Enter key press
+  document.getElementById('searchInput').addEventListener('keypress', (event) => {
+    if (event.key === 'Enter') {
+      document.getElementById('searchBtn').click();
+    }
+  });
 </script>
 </body>
 </html>
